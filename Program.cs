@@ -17,6 +17,12 @@ builder.Services.AddIdentity<IdentityUser, IdentityRole>(options=>
     options.Password.RequireLowercase = true;
 }).AddEntityFrameworkStores<AppDbContext>();
 
+//optional if you want the user to be redirect to different path other than account/login or you have a custom page where user should be redirected
+builder.Services.ConfigureApplicationCookie(optioins =>
+{
+    optioins.LoginPath = "/Account/Login";
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.

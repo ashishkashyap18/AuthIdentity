@@ -1,4 +1,5 @@
 using AuthIdentity.Models;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using System.Diagnostics;
 
@@ -13,12 +14,26 @@ namespace AuthIdentity.Controllers
             _logger = logger;
         }
 
+        [AllowAnonymous]
         public IActionResult Index()
         {
             return View();
         }
 
+        [Authorize]
         public IActionResult Privacy()
+        {
+            return View();
+        }
+
+        [AllowAnonymous]
+        public IActionResult NonSecuredMethod()
+        {
+            return View();
+        }
+
+        [Authorize]
+        public IActionResult SecuredMethod()
         {
             return View();
         }
