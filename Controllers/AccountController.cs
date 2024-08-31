@@ -95,5 +95,21 @@ namespace AuthIdentity.Controllers
             await _signInManager.SignOutAsync();
             return RedirectToAction("Index", "Home");
         }
+
+        [AllowAnonymous]
+        [HttpPost]
+        [HttpGet]
+        public async Task<IActionResult> IsEmailAvailable(string Email)
+        {
+            var user = await _userManager.FindByEmailAsync(Email);
+            if(user == null)
+            {
+                return Json(true);
+            }
+            else
+            {
+                return Json($"Email {Email} is already in use");
+            }
+        }
     }
 }
