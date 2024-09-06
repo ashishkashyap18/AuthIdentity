@@ -5,6 +5,7 @@ using System.Diagnostics;
 
 namespace AuthIdentity.Controllers
 {
+    [Authorize(Roles ="Admin,Moderator,User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;
@@ -14,13 +15,13 @@ namespace AuthIdentity.Controllers
             _logger = logger;
         }
 
-        [AllowAnonymous]
+        [Authorize]
         public IActionResult Index()
         {
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles ="Moderator")]
         public IActionResult Privacy()
         {
             return View();
@@ -32,7 +33,7 @@ namespace AuthIdentity.Controllers
             return View();
         }
 
-        [Authorize]
+        [Authorize(Roles ="Admin")]
         public IActionResult SecuredMethod()
         {
             return View();

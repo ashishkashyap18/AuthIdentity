@@ -34,6 +34,14 @@
                         <li class="nav-item">
                             <a class="nav-link text-dark" asp-controller="Home" asp-action="SecuredMethod">SecuredMethod</a>
                         </li>
+                        @if (SignInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a class="nav-link text-dark" asp-controller="Administration" asp-action="ListRoles">
+                                    Manage Roles
+                                </a>
+                            </li>
+                        }
                     </ul>
                     <ul class="navbar-nav ml-auto">
                         @if (SignInManager.IsSignedIn(User))
@@ -46,18 +54,19 @@
                                 </form>
                             </li>
                         }
-                        else{
-                            
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="account" asp-action="register">
-                                Register
-                            </a>
-                        </li>
-                        <li class="nav-item">
-                            <a class="nav-link" asp-controller="account" asp-action="login">
-                                Login
-                            </a>
-                        </li>
+                        else
+                        {
+
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="account" asp-action="register">
+                                    Register
+                                </a>
+                            </li>
+                            <li class="nav-item">
+                                <a class="nav-link" asp-controller="account" asp-action="login">
+                                    Login
+                                </a>
+                            </li>
                         }
                     </ul>
                 </div>

@@ -1,0 +1,17 @@
+﻿@model IEnumerable<ApplicationUser>
+@{
+    ViewData["Title"] = "List all Users";
+}
+
+<h1>All Users</h1>
+@if (Model.Any())
+{
+    <a asp-controller="Account" asp-action="Register" class="btn btn-primary my-3">Add New User</a>
+
+    foreach(var user in Model)
+    {
+        <div class="card mb-3">
+            <div class="card-header">User Id : @user.Id</div>
+        </div>
+    }
+}
