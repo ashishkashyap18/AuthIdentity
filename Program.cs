@@ -1,4 +1,5 @@
-using AuthIdentity.DB;
+using AuthIdentity.Db;
+using AuthIdentity.Models;
 using Microsoft.AspNetCore.Identity;
 using Microsoft.EntityFrameworkCore;
 
@@ -6,23 +7,24 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<AppDbContext>(options => options.UseSqlServer(builder.Configuration.GetConnectionString("Default")));
-builder.Services.AddIdentity<IdentityUser, IdentityRole>(options=>
+builder.Services.AddDbContext<AppDbContext>(options =>
 {
-    options.Password.RequireDigit = true;
-    options.Password.RequiredLength = 8;
-    options.Password.RequireNonAlphanumeric= true;
-    options.Password.RequiredUniqueChars = 4;
-    options.Password.RequireUppercase = true;
-    options.Password.RequireLowercase = true;
-}).AddEntityFrameworkStores<AppDbContext>();
-
-//optional if you want the user to be redirect to different path other than account/login or you have a custom page where user should be redirected
-builder.Services.ConfigureApplicationCookie(optioins =>
-{
-    optioins.LoginPath = "/Account/Login";
+    options.UseSqlServer(builder.Configuration.GetConnectionString("DefaultConnection"));
 });
-
+builder.Services.AddIdentity<ApplicationUser,IdentityRole>(
+    options =>
+    {
+        options.Password.RequireDigit=true;
+        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireUppercase = true;
+        options.Password.RequireLowercase = true;
+        options.Password.RequiredLength = 8;
+        options.Password.RequiredUniqueChars=4;
+    }).AddEntityFrameworkStores<AppDbContext>();
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.LoginPath = "/Account/Login";
+});
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -38,7 +40,6 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
-app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapControllerRoute(

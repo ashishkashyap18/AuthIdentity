@@ -1,6 +1,6 @@
 ﻿@model LoginViewModel
 @{
-    ViewBag.Title = "User Login Page";
+    ViewBag.Title = "Login User Page";
 }
 
 <h1>User Login</h1>
@@ -9,26 +9,26 @@
     <div class="col-md-12">
         <form method="post">
             <input type="hidden" name="ReturnUrl" value="@ViewData["ReturnUrl"]" />
-            <div class="text-danger" asp-validation-summary="All"></div>
+            <div asp-validation-summary="All"></div>
             <div class="form-group">
                 <label asp-for="Email"></label>
                 <input asp-for="Email" class="form-control" />
-                <span class="text-danger" asp-validation-for="Email"></span>
+                <span asp-validation-for="Email" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Password"></label>
                 <input asp-for="Password" class="form-control" />
-                <span class="text-danger" asp-validation-for="Password"></span>
+                <span asp-validation-for="Password" class="text-danger"></span>
             </div>
-            <div class="form-group">
+            <div class="form-group mt-1">
                 <div class="checkbox">
                     <label asp-for="RememberMe">
                         <input asp-for="RememberMe" />
-                        @Html.DisplayNameFor(m => m.RememberMe)
+                        @Html.DisplayNameFor(m=>m.RememberMe)
                     </label>
                 </div>
             </div>
-            <button class="btn btn-primary mt-3" type="submit">Login</button>
+            <button type="submit" class="btn btn-primary mt-3">Login</button>
         </form>
     </div>
 </div>
