@@ -16,6 +16,13 @@ namespace AuthIdentity.Controllers
         }
 
         [HttpGet]
+        public IActionResult ListUsers()
+        {
+            var users = _userManager.Users;
+            return View(users);
+        } 
+
+        [HttpGet]
         public IActionResult Register()
         {
             return View();
@@ -109,6 +116,13 @@ namespace AuthIdentity.Controllers
             {
                 return Json($"Email {Email} is already registered please login");
             }
+        }
+
+        [HttpGet]
+        [AllowAnonymous]
+        public IActionResult AccessDenied()
+        {
+            return View();
         }
     }
 }
