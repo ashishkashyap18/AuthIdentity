@@ -98,7 +98,7 @@ namespace AuthIdentity.Controllers
         [AllowAnonymous]
         [HttpPost]
         [HttpGet]
-        public async Task<IActionResult> IsEmailAvailabel(string Email)
+        public async Task<IActionResult> IsEmailAvailable(string Email)
         {
             var user = await _userManager.FindByEmailAsync(Email);
             if (user == null)

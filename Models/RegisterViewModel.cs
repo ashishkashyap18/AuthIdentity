@@ -14,7 +14,7 @@ namespace AuthIdentity.Models
 
         [Required]
         [EmailAddress]
-        [Remote(action:"IsEmailAvailable",controller:"Account")]
+        [Remote(action: "IsEmailAvailable", controller:"Account")]
         public string? Email { get; set; }
 
         [Required]
