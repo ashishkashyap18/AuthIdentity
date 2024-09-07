@@ -5,7 +5,7 @@ using System.Diagnostics;
 
 namespace AuthIdentity.Controllers
 {
-    [Authorize(Roles ="Admin,Moderator,User")]
+    //[Authorize(Roles ="Admin,Moderator,User")]
     public class HomeController : Controller
     {
         private readonly ILogger<HomeController> _logger;

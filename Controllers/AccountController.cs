@@ -13,14 +13,7 @@ namespace AuthIdentity.Controllers
         {
             _signInManager = signInManager;
             _userManager = userManager;
-        }
-
-        [HttpGet]
-        public IActionResult ListUsers()
-        {
-            var users = _userManager.Users;
-            return View(users);
-        } 
+        }       
 
         [HttpGet]
         public IActionResult Register()
@@ -44,6 +37,10 @@ namespace AuthIdentity.Controllers
 
                 if (result.Succeeded)
                 {
+                    if(_signInManager.IsSignedIn(User) && User.IsInRole("Admin"))
+                    {
+                        return RedirectToAction("ListUsers", "Administration");
+                    }
                     await _signInManager.SignInAsync(user, isPersistent: false);
                     return RedirectToAction("index", "Home");
                 }
