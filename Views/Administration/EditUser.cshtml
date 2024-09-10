@@ -65,7 +65,7 @@
             }
         </div>
         <div class="card-footer">
-            <a href="#" class="btn btn-primary m-auto">
+            <a asp-action="ManageUserRoles" asp-controller="Administration" asp-route-UserId="@Model.Id" class="btn btn-primary m-auto">
                 Manage Roles
             </a>
         </div>
@@ -89,7 +89,7 @@
             }
         </div>
         <div class="card-footer">
-            <a href="#" class="m-auto btn btn-primary">Manage Claims</a>
+            <a asp-action="ManageUserClaims" asp-controller="Administration" asp-route-UserId="@Model.Id" class="m-auto btn btn-primary">Manage Claims</a>
         </div>
     </div>
 </form>

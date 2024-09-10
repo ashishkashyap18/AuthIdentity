@@ -11,5 +11,6 @@ namespace AuthIdentity.Models
         public string? RoleName { get; set; }
         public string? RoleDescription { get; set; }
         public List<string>? Users { get; set; }
+        public List<string>? Claims { get; set; }
     }
 }
